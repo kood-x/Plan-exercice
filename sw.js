@@ -1,7 +1,7 @@
 /* Service worker — Cap sur la saison */
 /* Astuce mise à jour : change le numéro de version ci-dessous (v1 -> v2)
    après avoir modifié index.html pour forcer le rafraîchissement chez tout le monde. */
-const CACHE = "cap-saison-v3";
+const CACHE = "cap-saison-v5";
 const ASSETS = ["./", "./index.html", "./manifest.json", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", e => {

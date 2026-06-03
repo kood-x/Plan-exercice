@@ -25,6 +25,7 @@
     --fond:#2dd4bf; --dev:#60a5fa; --spec:#fb923c;
   }
   body.fille{ --accent:#fb7185; --accent2:#f43f5e; --accentSoft:rgba(251,113,133,.16); }
+  body.maman{ --accent:#34d399; --accent2:#10b981; --accentSoft:rgba(52,211,153,.16); }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
   body{
@@ -41,14 +42,14 @@
   .wrap{position:relative;z-index:1;max-width:480px;margin:0 auto}
   .display{font-family:'Anton',sans-serif;letter-spacing:.5px;text-transform:uppercase}
 
-  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px;flex-wrap:wrap}
   .logo{display:flex;align-items:center;gap:9px;min-width:0}
   .logo .mark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:18px;
     background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 6px 18px var(--accentSoft);flex:0 0 auto}
   .logo h1{font-size:18px;line-height:.9}
   .logo small{display:block;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px}
   .switch{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px;flex:0 0 auto}
-  .switch button{border:0;background:transparent;color:var(--muted);font-weight:700;font-size:13px;padding:7px 12px;border-radius:999px;cursor:pointer;transition:.25s}
+  .switch button{border:0;background:transparent;color:var(--muted);font-weight:700;font-size:12px;padding:6px 11px;border-radius:999px;cursor:pointer;transition:.25s}
   .switch button.on{color:#04121f;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 4px 14px var(--accentSoft)}
 
   .hero{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:22px;
@@ -189,6 +190,7 @@
   .exo .who .tag{font-weight:800;flex:0 0 auto}
   .exo .who.papa{background:rgba(56,189,248,.07)} .exo .who.papa .tag{color:#7dd3fc}
   .exo .who.fille{background:rgba(251,113,133,.07)} .exo .who.fille .tag{color:#fda4af}
+  .exo .who.maman{background:rgba(52,211,153,.07)} .exo .who.maman .tag{color:#6ee7b7}
   .exo .who.active{outline:1.5px solid var(--accent)}
   .listwork{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:14px;padding:12px 13px}
   .listwork li{position:relative;padding-left:16px;font-size:13px;margin-bottom:8px;line-height:1.45;list-style:none}
@@ -244,6 +246,7 @@
     <div class="switch" id="switch">
       <button data-p="papa" class="on">Papa</button>
       <button data-p="fille">Fille</button>
+      <button data-p="maman">Maman</button>
     </div>
   </div>
 
@@ -257,7 +260,7 @@
       <div class="pct"><div><b id="pctNum">0%</b><span>complété</span></div></div>
     </div>
     <div class="heroR">
-      <div class="greet">Salut <b id="who">Papa</b> 👋</div>
+      <div class="greet">Salut <b id="who">Papa</b> <span id="whoEmo">👋</span></div>
       <div class="quote" id="quote">On y va, une séance à la fois.</div>
       <div class="chips">
         <div class="chip"><b id="stSess">0</b><span>séances</span></div>
@@ -431,6 +434,41 @@ const VIDEOS={
   "Gainage complet":SW+"abs/plank"
 };
 
+/* ===== Paramètres de Maman (moyennement active · plaisir/famille · RPE 6-7) ===== */
+const MAMAN={
+  "Goblet squat":"3 × 10, charge légère, confortable",
+  "Fente arrière":"3 × 8 / jambe",
+  "Pont fessier (2 jambes)":"3 × 12",
+  "Fente latérale":"3 × 8 / côté",
+  "Tenue position de patineur (mi-squat)":"3 × 20-30 s",
+  "Planche frontale + latérale":"3 × 20-30 s",
+  "Vélo — base aérobie":"18-22 min en zone facile (RPE 5-6)",
+  "Slideboard (ou sauts de patineur lents)":"4 × 30 s / 60 s repos",
+  "Équilibre sur 1 jambe":"3 × 20 s / jambe",
+  "Dead bug + bird dog":"3 × 8 / côté",
+  "Extensions du dos (superman)":"3 × 10",
+  "Squat (gobelet ou haltères)":"3 × 10, charge légère-modérée (RPE 6-7)",
+  "Fente bulgare":"3 × 8 / jambe, léger",
+  "Soulevé de terre roumain":"3 × 10, charge légère",
+  "Montée sur banc latérale":"3 × 8 / côté",
+  "Mollets debout":"3 × 15",
+  "Pallof press (bande)":"3 × 10 / côté",
+  "Vélo — VO2 / seuil":"5 × 2 min modéré (RPE 6-7) / 2 min facile",
+  "Slideboard":"5 × 40 s / 60 s repos",
+  "Sauts latéraux (skater bounds) ⭐":"4 × 6 / côté, contrôlés",
+  "Saut en longueur sans élan":"4 × 4 sauts",
+  "Planche latérale dynamique":"3 × 10 / côté",
+  "Squat (un peu plus lourd, propre)":"3 × 8, charge modérée (RPE 7)",
+  "Fente sautée":"3 × 6 / jambe, contrôlée",
+  "Soulevé roumain sur 1 jambe":"3 × 8 / jambe",
+  "Saut sur boîte (réception molle)":"4 × 4, hauteur modérée",
+  "Gainage anti-rotation + planche latérale":"3 × 30 s",
+  "Vélo — capacité anaérobie":"5-6 × 45 s soutenu / 2 min repos",
+  "Slideboard — puissance-endurance":"6 × 45 s / 45 s repos",
+  "Sauts latéraux pour distance":"4 × 6 / côté",
+  "Gainage complet":"8-10 min"
+};
+
 const TESTS = [
   {id:"t300",e:"⏱️",name:"300 m en patin",unit:"secondes",lower:true},
   {id:"long",e:"🦘",name:"Saut en longueur",unit:"cm",lower:false},
@@ -547,10 +585,11 @@ async function set(k,v){
 }
 function blank(){ return {sessions:{}, tests:{}, seen:[]}; }
 
-const state = { profile:"papa", data:{papa:blank(), fille:blank()} };
-async function loadAll(){ for(const p of ["papa","fille"]){ const raw=await get("skate_"+p); if(raw){ try{ state.data[p]=Object.assign(blank(),JSON.parse(raw)); }catch(e){} } } }
+const state = { profile:"papa", data:{papa:blank(), fille:blank(), maman:blank()} };
+async function loadAll(){ for(const p of ["papa","fille","maman"]){ const raw=await get("skate_"+p); if(raw){ try{ state.data[p]=Object.assign(blank(),JSON.parse(raw)); }catch(e){} } } }
 async function saveCurrent(){ await set("skate_"+state.profile, JSON.stringify(state.data[state.profile])); }
 function cur(){ return state.data[state.profile]; }
+function pLabel(p){ return p==="papa"?"Papa":p==="fille"?"Fille":"Maman"; }
 
 function stats(d){
   let done=0; for(const k in d.sessions) if(d.sessions[k]) done++;
@@ -568,7 +607,8 @@ let activeTab="seances", firstRender=true;
 function render(){
   const d=cur(), s=stats(d);
   document.body.className=state.profile;
-  document.getElementById("who").textContent=state.profile==="papa"?"Papa":"Fille";
+  document.getElementById("who").textContent=pLabel(state.profile);
+  document.getElementById("whoEmo").textContent=state.profile==="maman"?"🐢":"👋";
   const pct=Math.round(s.done/36*100);
   document.getElementById("pctNum").textContent=pct+"%";
   document.getElementById("ringFill").style.strokeDashoffset=(251.3*(1-pct/100)).toFixed(1);
@@ -644,11 +684,12 @@ function viewGuide(){
   return html;
 }
 function renderDuo(){
-  const dp=stats(state.data.papa).done, df=stats(state.data.fille).done;
+  const dp=stats(state.data.papa).done, df=stats(state.data.fille).done, dm=stats(state.data.maman).done;
   document.getElementById("duo").innerHTML=
-    `<h3>🤝 Le duo</h3><p>Vous y êtes ensemble — chaque coche encourage l'autre.</p>
+    `<h3>🤝 L'équipe</h3><p>Vous y êtes ensemble — chaque coche encourage les autres.</p>
      <div class="duorow"><div class="nm">Papa</div><div class="duobar"><i style="width:${dp/36*100}%;background:linear-gradient(90deg,#38bdf8,#0ea5e9)"></i></div><div class="ct">${dp}/36</div></div>
-     <div class="duorow"><div class="nm">Fille</div><div class="duobar"><i style="width:${df/36*100}%;background:linear-gradient(90deg,#fb7185,#f43f5e)"></i></div><div class="ct">${df}/36</div></div>`;
+     <div class="duorow"><div class="nm">Fille</div><div class="duobar"><i style="width:${df/36*100}%;background:linear-gradient(90deg,#fb7185,#f43f5e)"></i></div><div class="ct">${df}/36</div></div>
+     <div class="duorow"><div class="nm">Maman</div><div class="duobar"><i style="width:${dm/36*100}%;background:linear-gradient(90deg,#34d399,#10b981)"></i></div><div class="ct">${dm}/36</div></div>`;
 }
 
 /* ===== Fiche séance ===== */
@@ -660,9 +701,11 @@ function openSheet(w,s){
   if(det.kind==="table"){
     work=det.items.map(it=>{
       const v=VIDEOS[it.nm];
+      const pm=MAMAN[it.nm]||it.papa;
       return `<div class="exo"><div class="exo-top"><div class="nm">${it.nm}</div>${v?`<a class="demo" href="${v}" target="_blank" rel="noopener">Démo ▶</a>`:""}</div>${it.note?`<div class="note">${it.note}</div>`:""}
       <div class="who papa ${state.profile==="papa"?"active":""}"><span class="tag">👨 Papa</span><span>${it.papa}</span></div>
-      <div class="who fille ${state.profile==="fille"?"active":""}"><span class="tag">👧 Fille</span><span>${it.fille}</span></div></div>`;
+      <div class="who fille ${state.profile==="fille"?"active":""}"><span class="tag">👧 Fille</span><span>${it.fille}</span></div>
+      <div class="who maman ${state.profile==="maman"?"active":""}"><span class="tag">🐢 Maman</span><span>${pm}</span></div></div>`;
     }).join("");
   } else {
     work=`<ul class="listwork">${det.items.map(x=>"<li>"+x+"</li>").join("")}</ul><a class="demo demo-block" href="${SKATE_VID}" target="_blank" rel="noopener">▶ Démos de technique de patin</a>`;
@@ -716,7 +759,7 @@ document.getElementById("view").addEventListener("input",e=>{ const inp=e.target
 document.getElementById("view").addEventListener("change",e=>{ if(e.target.closest("input[data-test]")) render(); });
 document.getElementById("overlay").addEventListener("click",closeSheet);
 document.getElementById("resetBtn").addEventListener("click",()=>{
-  if(confirm("Réinitialiser toutes les données du profil « "+(state.profile==="papa"?"Papa":"Fille")+" » ? Cette action est définitive.")){
+  if(confirm("Réinitialiser toutes les données du profil « "+pLabel(state.profile)+" » ? Cette action est définitive.")){
     state.data[state.profile]=blank(); firstRender=true; saveCurrent(); render(); toast("Profil réinitialisé."); } });
 
 /* ===== Minuteur ===== */
