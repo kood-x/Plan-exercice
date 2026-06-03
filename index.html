@@ -534,8 +534,8 @@ const GUIDE = [
     <tr><td>Bloc 2<br>Sem 5-8</td><td><b>Développement</b> — force, puissance, poussée latérale, intervalles structurés.</td></tr>
     <tr><td>Bloc 3<br>Sem 9-12</td><td><b>Spécifique</b> — puissance-endurance, intervalles « format course », volume de patin.</td></tr></table>
     <p><b>Semaine type :</b> Séance 1 force &amp; position · Séance 2 patin &amp; vitesse · Séance 3 conditionnement &amp; puissance latérale. Gardez au moins une journée de repos entre la 1 et la 3.</p>`},
-  {e:"👥",t:"Deux versions, une séance",h:`<p><b>👨 Papa (41 ans, reprise) :</b> progression en charge, mais la technique passe avant le poids. Base aérobie plus longue, articulations protégées, bonne récupération.</p>
-    <p><b>👧 Fille (en croissance) :</b> pas de charges lourdes maximales ni de test de force max. On vise la qualité de mouvement, la coordination, le poids du corps. La pliométrie est super à son âge, en quantité modérée et avec de belles réceptions.</p>
+  {e:"👥",t:"Deux versions, une séance",h:`<p><b>🦊 Papa (41 ans, reprise) :</b> progression en charge, mais la technique passe avant le poids. Base aérobie plus longue, articulations protégées, bonne récupération.</p>
+    <p><b>🐰 Fille (en croissance) :</b> pas de charges lourdes maximales ni de test de force max. On vise la qualité de mouvement, la coordination, le poids du corps. La pliométrie est super à son âge, en quantité modérée et avec de belles réceptions.</p>
     <p><b>RPE (effort perçu 1-10) :</b> 6-7 = on pourrait faire 3-4 reps de plus · 8 = difficile mais propre · 9-10 = quasi-max, réservé aux intervalles.</p>`},
   {e:"🛒",t:"Le matériel (du + utile au facultatif)",h:`<ul>
     <li><b>Slideboard / planche de glisse</b> ⭐ — le meilleur achat, imite la poussée latérale.</li>
@@ -703,8 +703,8 @@ function openSheet(w,s){
       const v=VIDEOS[it.nm];
       const pm=MAMAN[it.nm]||it.papa;
       return `<div class="exo"><div class="exo-top"><div class="nm">${it.nm}</div>${v?`<a class="demo" href="${v}" target="_blank" rel="noopener">Démo ▶</a>`:""}</div>${it.note?`<div class="note">${it.note}</div>`:""}
-      <div class="who papa ${state.profile==="papa"?"active":""}"><span class="tag">👨 Papa</span><span>${it.papa}</span></div>
-      <div class="who fille ${state.profile==="fille"?"active":""}"><span class="tag">👧 Fille</span><span>${it.fille}</span></div>
+      <div class="who papa ${state.profile==="papa"?"active":""}"><span class="tag">🦊 Papa</span><span>${it.papa}</span></div>
+      <div class="who fille ${state.profile==="fille"?"active":""}"><span class="tag">🐰 Fille</span><span>${it.fille}</span></div>
       <div class="who maman ${state.profile==="maman"?"active":""}"><span class="tag">🐢 Maman</span><span>${pm}</span></div></div>`;
     }).join("");
   } else {
