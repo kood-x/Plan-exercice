@@ -148,7 +148,7 @@
   .duo{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;padding:15px;margin-top:18px}
   .duo h3{font-family:'Anton';font-size:14px;margin-bottom:3px} .duo p{font-size:11px;color:var(--muted);margin-bottom:13px}
   .duorow{display:flex;align-items:center;gap:11px;margin-bottom:11px} .duorow:last-child{margin-bottom:0}
-  .duorow .nm{width:46px;font-weight:800;font-size:13px}
+  .duorow .nm{width:66px;font-weight:800;font-size:13px}
   .duobar{flex:1;height:13px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}
   .duobar i{display:block;height:100%;border-radius:999px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
   .duorow .ct{font-family:'Anton';font-size:13px;width:48px;text-align:right;color:var(--muted)}
@@ -608,7 +608,7 @@ function render(){
   const d=cur(), s=stats(d);
   document.body.className=state.profile;
   document.getElementById("who").textContent=pLabel(state.profile);
-  document.getElementById("whoEmo").textContent=state.profile==="maman"?"🐢":"👋";
+  document.getElementById("whoEmo").textContent=state.profile==="maman"?"🐢":state.profile==="fille"?"🐰":"🦊";
   const pct=Math.round(s.done/36*100);
   document.getElementById("pctNum").textContent=pct+"%";
   document.getElementById("ringFill").style.strokeDashoffset=(251.3*(1-pct/100)).toFixed(1);
@@ -687,9 +687,9 @@ function renderDuo(){
   const dp=stats(state.data.papa).done, df=stats(state.data.fille).done, dm=stats(state.data.maman).done;
   document.getElementById("duo").innerHTML=
     `<h3>🤝 L'équipe</h3><p>Vous y êtes ensemble — chaque coche encourage les autres.</p>
-     <div class="duorow"><div class="nm">Papa</div><div class="duobar"><i style="width:${dp/36*100}%;background:linear-gradient(90deg,#38bdf8,#0ea5e9)"></i></div><div class="ct">${dp}/36</div></div>
-     <div class="duorow"><div class="nm">Fille</div><div class="duobar"><i style="width:${df/36*100}%;background:linear-gradient(90deg,#fb7185,#f43f5e)"></i></div><div class="ct">${df}/36</div></div>
-     <div class="duorow"><div class="nm">Maman</div><div class="duobar"><i style="width:${dm/36*100}%;background:linear-gradient(90deg,#34d399,#10b981)"></i></div><div class="ct">${dm}/36</div></div>`;
+     <div class="duorow"><div class="nm">Papa 🦊</div><div class="duobar"><i style="width:${dp/36*100}%;background:linear-gradient(90deg,#38bdf8,#0ea5e9)"></i></div><div class="ct">${dp}/36</div></div>
+     <div class="duorow"><div class="nm">Fille 🐰</div><div class="duobar"><i style="width:${df/36*100}%;background:linear-gradient(90deg,#fb7185,#f43f5e)"></i></div><div class="ct">${df}/36</div></div>
+     <div class="duorow"><div class="nm">Maman 🐢</div><div class="duobar"><i style="width:${dm/36*100}%;background:linear-gradient(90deg,#34d399,#10b981)"></i></div><div class="ct">${dm}/36</div></div>`;
 }
 
 /* ===== Fiche séance ===== */
